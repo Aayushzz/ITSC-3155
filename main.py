@@ -86,10 +86,15 @@ class SandwichMachine:
             return False
         change = round(coins - cost, 2)
         print(f"Here is ${change} in change")
+        return True
+    
            
 
     def make_sandwich(self, sandwich_size, order_ingredients):
         """Deduct the required ingredients from the resources.
            Hint: no output"""
+        for item, required in order_ingredients.items():
+            self.machine_resources[item] -= required
+            print(f"{sandwich_size} sandwich is ready. Bon appetit.")
 
 ### Make an instance of SandwichMachine class and write the rest of the codes ###
