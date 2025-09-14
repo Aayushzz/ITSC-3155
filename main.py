@@ -55,10 +55,33 @@ class SandwichMachine:
     def process_coins(self):
         """Returns the total calculated from coins inserted.
            Hint: include input() function here, e.g. input("how many quarters?: ")"""
+        print("Please insert coins")
+        def read_int(prompt):
+            while True:
+                try: 
+                    val = input(prompt).strip()
+                    if val == "":
+                        return 0
+                    n = int(val)
+                    if n < 0: 
+                        print("please enter a non-negative integer")
+                        continue
+                    return n
+                except ValueError:
+                    print("Please enter a whhole number (e.g., 0, 1, 2, ...).")
+        
+        dollars = read_int("how many large dollars?: ")
+        halves = read_int("how many half dollars?: ")
+        quarters = read_int("how many quarters?: ")
+        nickels = read_int("how many nickels?: ")        
 
+        total = dollars * 1.00 + halves * 0.50 + quarters * 0.25 + nickels * 0.05
+        #return to the nearest cent to avoid floating point noise when printing
+        return round(total + 1e-9, 2)
     def transaction_result(self, coins, cost):
         """Return True when the payment is accepted, or False if money is insufficient.
            Hint: use the output of process_coins() function for cost input"""
+           
 
     def make_sandwich(self, sandwich_size, order_ingredients):
         """Deduct the required ingredients from the resources.
