@@ -95,7 +95,7 @@ class SandwichMachine:
            Hint: no output"""
         for item, required in order_ingredients.items():
             self.machine_resources[item] -= required
-            print(f"{sandwich_size} sandwich is ready. Bon appetit.")
+        print(f"{sandwich_size} sandwich is ready. Bon appetit.")
 
 ### Make an instance of SandwichMachine class and write the rest of the codes ###
 
@@ -131,5 +131,5 @@ def main():
         else: 
             print("Invalid option. Please choose small, medium, large, report or off. ")
             
-                
-        
+if __name__ == "__main__": 
+    main()
