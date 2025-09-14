@@ -104,3 +104,32 @@ def print_report(current_resources):
     print(f"Ham: {current_resources['ham']} slices")
     print(f"Cheese: {current_resources['cheese']} ounces")
     
+def main():
+    machine = SandwichMachine(resources)
+    VALID_SIZES = {"small", "medium", "large"}
+    
+    while True:
+        choice = input("What would you like ? ( small/ medium/ large/ off/ report): ").strip().lower()
+        
+        if choice == "off":
+            break
+        elif choice == "report":
+            print_report(machine.machine_resources)
+        elif choice in VALID_SIZES:
+            sandwich = recipes[choice]
+            ingredients = sandwich["ingredients"]
+            cost = sandwich["cost"]
+            
+            if not machine.check_resources(ingredients):
+                continue
+            inserted = machine.process_coins()
+            
+            if not machine.transaction_result(inserted, cost):
+                continue
+            machine.make_sandwich(choice, ingredients)
+            
+        else: 
+            print("Invalid option. Please choose small, medium, large, report or off. ")
+            
+                
+        
